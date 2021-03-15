@@ -55,7 +55,7 @@ public class FatturaDaoImpl implements FatturaDao {
 			while (rs.next()) {
 				Fattura fattura = new Fattura();
 
-				fattura.setDataOrdine(rs.getString("data_ordine"));
+				fattura.setDataOrdine(rs.getDate("data_ordine"));
 				fattura.setIdOrdine(rs.getInt("id_ordine"));
 				fattura.setIdUtente(rs.getInt("id_utente"));
 				fattura.setNumeroOrdine(rs.getString("numero_ordine"));
@@ -70,7 +70,6 @@ public class FatturaDaoImpl implements FatturaDao {
 				fattura.setPassword(rs.getString("password"));
 
 				fatture.add(fattura);
-
 			}
 			rs.close();
 			stmt.close();
@@ -79,7 +78,6 @@ public class FatturaDaoImpl implements FatturaDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
 		return fatture;
 
 	}

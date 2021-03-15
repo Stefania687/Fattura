@@ -1,7 +1,9 @@
 package it.objectmethod.fattura.domain;
 
+import java.sql.Date;
+
 public class Fattura {
-	
+
 	private int idArticolo;
 	private int disponibilita;
 	private String codiceArticolo;
@@ -10,12 +12,20 @@ public class Fattura {
 	private int idOrdine;
 	private String numeroOrdine;
 	private int idUtente;
-	private String dataOrdine;
+//	private String dataOrdine;
+	private Date dataOrdine;
 	private int quantita;
 	private int idRigaOrdine;
 	private String nomeUtente;
 	private String password;
 	
+	
+	public Date getDataOrdine() {
+		return dataOrdine;
+	}
+	public void setDataOrdine(Date dataOrdine) {
+		this.dataOrdine = dataOrdine;
+	}
 	public int getIdArticolo() {
 		return idArticolo;
 	}
@@ -64,12 +74,12 @@ public class Fattura {
 	public void setIdUtente(int idUtente) {
 		this.idUtente = idUtente;
 	}
-	public String getDataOrdine() {
-		return dataOrdine;
-	}
-	public void setDataOrdine(String dataOrdine) {
-		this.dataOrdine = dataOrdine;
-	}
+//	public String getDataOrdine() {
+//		return dataOrdine;
+//	}
+//	public void setDataOrdine(String dataOrdine) {
+//		this.dataOrdine = dataOrdine;
+//	}
 	public int getQuantita() {
 		return quantita;
 	}

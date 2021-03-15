@@ -20,7 +20,7 @@
 	<field name="prezzoUnitario" class="java.lang.Integer">
 		<fieldDescription><![CDATA[prezzoUnitario]]></fieldDescription>
 	</field>
-	<field name="dataOrdine" class="java.lang.String">
+	<field name="dataOrdine" class="java.sql.Date">
 		<fieldDescription><![CDATA[dataOrdine]]></fieldDescription>
 	</field>
 	<field name="idRigaOrdine" class="java.lang.Integer">
@@ -164,15 +164,6 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{idOrdine}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="415" y="98" width="140" height="21" uuid="c122ffe7-8921-4344-b0dc-5d203fd07f59">
-					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
-				</reportElement>
-				<textElement verticalAlignment="Middle">
-					<paragraph leftIndent="10"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{dataOrdine}]]></textFieldExpression>
-			</textField>
 			<staticText>
 				<reportElement x="0" y="79" width="230" height="63" uuid="0f1b5f36-ded5-424d-9989-7544373b8eb3">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
@@ -188,6 +179,12 @@ Cernusco sul Naviglio (MI)
 Telefono 333 333333
 email ciao@libero.it]]></text>
 			</staticText>
+			<textField pattern="d/M/yyyy">
+				<reportElement x="415" y="97" width="140" height="21" uuid="23d4e667-b829-4c79-80aa-f0292057920f"/>
+				<box leftPadding="10"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{dataOrdine}]]></textFieldExpression>
+			</textField>
 		</band>
 	</title>
 	<pageHeader>
@@ -263,7 +260,7 @@ Email ciao@gmail.com]]></text>
 				<text><![CDATA[Prezzo unitario]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="406" y="0" width="60" height="21" forecolor="#FFFFFF" backcolor="#185AAB" uuid="e0234f08-5075-4ac0-bc08-36a0d2ad186e"/>
+				<reportElement mode="Opaque" x="400" y="0" width="66" height="21" forecolor="#FFFFFF" backcolor="#185AAB" uuid="e0234f08-5075-4ac0-bc08-36a0d2ad186e"/>
 				<textElement verticalAlignment="Middle">
 					<font isBold="true"/>
 					<paragraph leftIndent="5"/>
@@ -281,7 +278,7 @@ Email ciao@gmail.com]]></text>
 				<text><![CDATA[Importo + IVA]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="359" y="0" width="47" height="21" forecolor="#FFFFFF" backcolor="#185AAB" uuid="d92c106b-9c6b-4d6a-8b8e-cfe123f0c949"/>
+				<reportElement mode="Opaque" x="359" y="0" width="41" height="21" forecolor="#FFFFFF" backcolor="#185AAB" uuid="d92c106b-9c6b-4d6a-8b8e-cfe123f0c949"/>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -305,10 +302,10 @@ Email ciao@gmail.com]]></text>
 					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
 				</reportElement>
 				<box>
-					<pen lineColor="#212245"/>
-					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#212245"/>
+					<pen lineWidth="0.5" lineColor="#212245"/>
+					<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#212245"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#212245"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#212245"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement verticalAlignment="Middle">
@@ -322,10 +319,10 @@ Email ciao@gmail.com]]></text>
 					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
 				</reportElement>
 				<box>
-					<pen lineColor="#212245"/>
-					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#212245"/>
+					<pen lineWidth="0.5" lineColor="#212245"/>
+					<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#212245"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#212245"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#212245"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement verticalAlignment="Middle">
@@ -338,48 +335,36 @@ Email ciao@gmail.com]]></text>
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="8f244eb2-e7a6-4907-b910-8d4392d38151"/>
 				</reportElement>
 				<box leftPadding="5">
-					<pen lineColor="#212245"/>
-					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#212245"/>
+					<pen lineWidth="0.5" lineColor="#212245"/>
+					<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#212245"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#212245"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#212245"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{quantita}]]></textFieldExpression>
 			</textField>
-			<textField pattern="#,##0.###;(#,##0.###-)">
+			<textField pattern="¤#,###.##;¤-#,###.##">
 				<reportElement x="260" y="0" width="99" height="21" uuid="39041478-d600-406d-a0cc-604319cc2cd9">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="e489c381-7ab8-4131-a126-f341626fc6d1"/>
 				</reportElement>
 				<box leftPadding="5">
-					<pen lineColor="#212245"/>
-					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#212245"/>
+					<pen lineWidth="0.5" lineColor="#212245"/>
+					<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#212245"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#212245"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#212245"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{prezzoUnitario}]]></textFieldExpression>
 			</textField>
-			<staticText>
-				<reportElement x="359" y="0" width="47" height="21" uuid="17336082-f430-4e08-bd99-35d5f57698c3"/>
-				<box leftPadding="5">
-					<pen lineColor="#212245"/>
-					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#212245"/>
-					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#212245"/>
-					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				</box>
-				<textElement verticalAlignment="Middle"/>
-				<text><![CDATA[22%]]></text>
-			</staticText>
-			<textField>
-				<reportElement x="406" y="0" width="60" height="21" uuid="a6246e2d-ca32-4e9f-8b43-cfd845000a46"/>
+			<textField pattern="¤#,##0.00;¤-#,##0.00">
+				<reportElement x="400" y="0" width="66" height="21" uuid="a6246e2d-ca32-4e9f-8b43-cfd845000a46"/>
 				<box>
-					<pen lineColor="#212245"/>
-					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#212245"/>
+					<pen lineWidth="0.5" lineColor="#212245"/>
+					<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#212245"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#212245"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#212245"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement verticalAlignment="Middle">
@@ -387,26 +372,38 @@ Email ciao@gmail.com]]></text>
 				</textElement>
 				<textFieldExpression><![CDATA[$V{importo}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField pattern="¤#,##0.00;¤-#,##0.00">
 				<reportElement x="466" y="0" width="89" height="21" uuid="9f0a787a-cde5-45af-b9fe-a2ed7fe694b7">
 					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
 				</reportElement>
 				<box>
-					<pen lineColor="#212245"/>
-					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#212245"/>
+					<pen lineWidth="0.5" lineColor="#212245"/>
+					<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#212245"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#212245"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#212245"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
-				<textElement verticalAlignment="Middle">
+				<textElement verticalAlignment="Middle" markup="none">
 					<paragraph leftIndent="5"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$V{importo-iva}]]></textFieldExpression>
 			</textField>
+			<textField pattern="#,###.##%">
+				<reportElement x="359" y="0" width="41" height="21" uuid="7fc0eaaa-e15c-4876-b297-8faeabacb7f3"/>
+				<box leftPadding="5">
+					<pen lineWidth="0.5" lineColor="#212245"/>
+					<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#212245"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#212245"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[0.22]]></textFieldExpression>
+			</textField>
 		</band>
 	</detail>
 	<columnFooter>
-		<band height="85" splitType="Stretch">
+		<band height="115" splitType="Stretch">
 			<staticText>
 				<reportElement mode="Opaque" x="346" y="0" width="105" height="30" forecolor="#000000" backcolor="#61A0FF" uuid="6e84e457-5742-435a-b38e-cee9d821e252">
 					<property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
@@ -419,7 +416,7 @@ Email ciao@gmail.com]]></text>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font size="9" isBold="true"/>
+					<font size="10" isBold="true"/>
 					<paragraph rightIndent="10"/>
 				</textElement>
 				<text><![CDATA[Totale]]></text>
@@ -441,7 +438,7 @@ Email ciao@gmail.com]]></text>
 				</textElement>
 				<text><![CDATA[Totale + IVA]]></text>
 			</staticText>
-			<textField>
+			<textField pattern="¤#,##0.00;¤-#,##0.00">
 				<reportElement mode="Opaque" x="346" y="30" width="105" height="30" backcolor="#D1EAFF" uuid="87db0d80-2a26-4c93-9f32-f5b1f5949023">
 					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
 				</reportElement>
@@ -458,7 +455,7 @@ Email ciao@gmail.com]]></text>
 				</textElement>
 				<textFieldExpression><![CDATA[$V{somma}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField pattern="¤#,##0.00;¤-#,##0.00">
 				<reportElement mode="Opaque" x="450" y="30" width="105" height="30" backcolor="#D1EAFF" uuid="a3c3a25a-bcd9-425b-8e80-8bb77a0dfb6b">
 					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
 				</reportElement>
@@ -470,6 +467,7 @@ Email ciao@gmail.com]]></text>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
 					<paragraph leftIndent="10"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$V{somma-iva}]]></textFieldExpression>
@@ -488,7 +486,7 @@ Email ciao@gmail.com]]></text>
 				<textElement textAlignment="Left"/>
 				<textFieldExpression><![CDATA[" di " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
-			<textField pattern="MMMMM dd, yyyy">
+			<textField pattern="d/M/yyyy">
 				<reportElement x="0" y="0" width="100" height="30" uuid="32483d97-ed8b-457f-9ff0-2158612512b4"/>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
