@@ -8,7 +8,7 @@ public class ConnectionFactory {
 		Connection conn = null;
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:33060/world", "omdev", "omdev");
+			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/e-commerce", "root", "root");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -9,89 +9,67 @@ import java.util.List;
 
 import it.objectmethod.fattura.connection.ConnectionFactory;
 import it.objectmethod.fattura.dao.FatturaDao;
-import it.objectmethod.fattura.domain.Articolo;
 import it.objectmethod.fattura.domain.Fattura;
-import it.objectmethod.fattura.domain.Ordine;
-import it.objectmethod.fattura.domain.RigaOrdine;
-import it.objectmethod.fattura.domain.Utente;
 
 public class FatturaDaoImpl implements FatturaDao {
 
 	@Override
-	public List<String> getNomeUtente() {
-		
+	public List<Fattura> getOrdini() {
 		Connection conn = ConnectionFactory.getConnection();
-		List<String> nomiUtenti = new ArrayList<String>();
-		String sql = "SELECT nome_utente, id_utente FROM utente;";
-		
+		List<Fattura> ordini = new ArrayList<Fattura>();
+		String sql = "SELECT id_ordine, numero_ordine FROM ordine";
 		try {
 			PreparedStatement stm = conn.prepareStatement(sql);
 			ResultSet rs = stm.executeQuery();
-			
 			while (rs.next()) {
-				nomiUtenti.add(rs.getString("nome_utente"));
-				nomiUtenti.add(rs.getString("id_utente"));
-				
+				Fattura ordine = new Fattura();
+				ordine.setIdOrdine(rs.getInt("id_ordine"));
+				ordine.setNumeroOrdine(rs.getString("numero_ordine"));
+				ordini.add(ordine);
 			}
-			rs.close();
-			stm.close();
-			conn.close();
-			
+			System.out.println("connessa al db");
+
 		} catch (Exception e) {
 			e.printStackTrace();
+			System.out.println("no database connection");
 		}
-		
-		return nomiUtenti;
+
+		return ordini;
 
 	}
 
 	@Override
-	public List<Fattura> getFattura(int idUtente) {
-		
+	public List<Fattura> getFattura(String numeroOrdine) {
+
 		Connection conn = ConnectionFactory.getConnection();
-		List<Fattura> fattura = new ArrayList<Fattura>();
+		List<Fattura> fatture = new ArrayList<Fattura>();
 
 		String sql = "SELECT * FROM ordine o join riga_ordine ro on o.id_ordine = ro.id_ordine "
 				+ "join utente u on u.id_utente = o.id_utente join articolo a on a.id_articolo = ro.id_articolo "
-				+ "WHERE nome_utente = ?";
+				+ "WHERE numero_ordine = ?";
 
 		try {
 			PreparedStatement stmt = conn.prepareStatement(sql);
+			stmt.setString(1, numeroOrdine);
 			ResultSet rs = stmt.executeQuery();
-			stmt.setInt(1, idUtente);
 			while (rs.next()) {
-				Fattura fatture = new Fattura();
+				Fattura fattura = new Fattura();
 
-				Articolo articolo = new Articolo();
-				articolo.setCodiceArticolo(rs.getString("codice_articolo"));
-				articolo.setDisponibilita(rs.getInt("disponibilita"));
-				articolo.setIdArticolo(rs.getInt("id_articolo"));
-				articolo.setNomeArticolo(rs.getString("nome_articolo"));
-				articolo.setPrezzoUnitario(rs.getInt("prezzo_unitario"));
+				fattura.setDataOrdine(rs.getString("data_ordine"));
+				fattura.setIdOrdine(rs.getInt("id_ordine"));
+				fattura.setIdUtente(rs.getInt("id_utente"));
+				fattura.setNumeroOrdine(rs.getString("numero_ordine"));
+				fattura.setCodiceArticolo(rs.getString("codice_articolo"));
+				fattura.setDisponibilita(rs.getInt("disponibilita"));
+				fattura.setIdArticolo(rs.getInt("id_articolo"));
+				fattura.setNomeArticolo(rs.getString("nome_articolo"));
+				fattura.setPrezzoUnitario(rs.getInt("prezzo_unitario"));
+				fattura.setIdRigaOrdine(rs.getInt("id_riga_ordine"));
+				fattura.setQuantita(rs.getInt("quantita"));
+				fattura.setNomeUtente(rs.getString("nome_utente"));
+				fattura.setPassword(rs.getString("password"));
 
-				Ordine ordine = new Ordine();
-				ordine.setDataOrdine(rs.getString("data_ordine"));
-				ordine.setIdOrdine(rs.getInt("id_ordine"));
-				ordine.setIdUtente(rs.getInt("id_utente"));
-				ordine.setNumeroOrdine(rs.getString("numero_ordine"));
-
-				RigaOrdine rigaOrdine = new RigaOrdine();
-				rigaOrdine.setIdArticolo(rs.getInt("id_articolo"));
-				rigaOrdine.setIdOrdine(rs.getInt("id_ordine"));
-				rigaOrdine.setIdRigaOrdine(rs.getInt("riga_ordine"));
-				rigaOrdine.setQuantita(rs.getInt("quantita"));
-
-				Utente utente = new Utente();
-				utente.setIdUtente(rs.getInt("id_utente"));
-				utente.setNomeUtente(rs.getString("nome_utente"));
-				utente.setPassword(rs.getString("password"));
-
-				fatture.setArticolo(articolo);
-				fatture.setOrdine(ordine);
-				fatture.setRigaOrdine(rigaOrdine);
-				fatture.setUtente(utente);
-
-				fattura.add(fatture);
+				fatture.add(fattura);
 
 			}
 			rs.close();
@@ -102,7 +80,8 @@ public class FatturaDaoImpl implements FatturaDao {
 			e.printStackTrace();
 		}
 
-		return fattura;
+		return fatture;
 
 	}
+
 }

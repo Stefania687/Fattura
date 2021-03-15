@@ -15,14 +15,14 @@ import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
 public class JasperService {
-	public byte[] getJasperPrintCountry(List<Fattura> beans) throws Exception {
+	public byte[] getJasperPrintFattura(List<Fattura> beans) throws Exception {
 
 		JRDataSource jasperBeans = new JRBeanCollectionDataSource(beans, true);
 
 		Map<String, Object> parameters = new HashMap<String, Object>();
 		parameters.put(JRParameter.REPORT_LOCALE, Locale.ITALY);
 
-		String jasperFileName = "templates/QuiVaIlPercorsoDelFile.jasper";
+		String jasperFileName = "templates/fattura.jasper";
 
 		InputStream report = this.getClass().getClassLoader().getResourceAsStream(jasperFileName);
 		JasperPrint print = JasperFillManager.fillReport(report, parameters, jasperBeans);
